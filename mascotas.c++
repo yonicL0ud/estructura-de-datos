@@ -246,8 +246,9 @@ struct ColaEspera {
 };
 
 struct PilaConsultorios {
-    PilaConsultorios* tope;
-    
+    int num;                     // guarda el número del consultorio
+    PilaConsultorios* sig;       // puntero al siguiente nodo
+    PilaConsultorios* tope;      
     void iniciar() {
         tope = NULL;
         for (int i = 5; i >= 1; i--) {
@@ -265,19 +266,19 @@ struct PilaConsultorios {
             return 0;
         }
         PilaConsultorios* temp = tope;
-        int num = tope->num;
+        int numConsultorio = tope->num;
         tope = tope->sig;
         delete temp;
-        cout << "Consultorio " << num << " asignado" << endl;
-        return num;
+        cout << "Consultorio " << numConsultorio << " asignado" << endl;
+        return numConsultorio;
     }
     
-    void liberar(int num) {
+    void liberar(int numConsultorio) {
         PilaConsultorios* nuevo = new PilaConsultorios();
-        nuevo->num = num;
+        nuevo->num = numConsultorio;
         nuevo->sig = tope;
         tope = nuevo;
-        cout << "Consultorio " << num << " liberado" << endl;
+        cout << "Consultorio " << numConsultorio << " liberado" << endl;
     }
     
     void mostrar() {
