@@ -19,10 +19,6 @@ struct NodoCola {
     NodoCola* sig;
 };
 
-struct PilaConsultorios {
-    int num;
-    PilaConsultorios* sig;
-};
 
 struct GestorMascotas {
     Mascota* cabeza;
@@ -245,7 +241,7 @@ struct ColaEspera {
     }
 };
 
-struct PilaConsultorios {
+	struct PilaConsultorios {
     int num;                     // guarda el número del consultorio
     PilaConsultorios* sig;       // puntero al siguiente nodo
     PilaConsultorios* tope;      
@@ -330,7 +326,7 @@ int main() {
         cin >> op;
         
         switch(op) {
-            case 1:
+            case 1: //REgistrar mascota
                 cout << "Nombre mascota: ";
                 cin >> nom;
                 cout << "Nombre dueño: ";
@@ -340,11 +336,11 @@ int main() {
                 gm.registrar(nom, dueno, pri);
                 break;
                 
-            case 2:
+            case 2: // Mostrar mascotas
                 gm.mostrar();
                 break;
                 
-            case 3:
+            case 3: //Buscar mascota
                 cout << "ID: ";
                 cin >> id;
                 if (gm.buscar(id) != NULL) {
@@ -354,7 +350,7 @@ int main() {
                 }
                 break;
                 
-            case 4:
+            case 4: //Cambiar prioridad
                 cout << "ID: ";
                 cin >> id;
                 cout << "Nueva prioridad (1=emergencia): ";
@@ -362,13 +358,14 @@ int main() {
                 gm.cambiarPrioridad(id, pri);
                 break;
                 
-            case 5:
+            case 5: //Eliminar mascota
                 cout << "ID a eliminar: ";
                 cin >> id;
                 gm.eliminar(id);
                 break;
                 
-            case 6: {
+            case 6: //Agregar a la fila de espera
+			 {
                 cout << "ID a agregar a fila: ";
                 cin >> id;
                 Mascota* m = gm.buscar(id);
@@ -383,7 +380,8 @@ int main() {
                 break;
             }
                 
-            case 7: {
+            case 7: // Atender siguiente mascota
+			{
                 Mascota* m = cola.desencolar();
                 if (m != NULL) {
                     cout << "Atendiendo a " << m->nombre << " (dueño: " << m->dueno << ")" << endl;
@@ -398,22 +396,23 @@ int main() {
                 break;
             }
                 
-            case 8:
+            case 8: //Mostrar cola de espera
                 cola.mostrar();
                 break;
                 
-            case 9:
+            case 9: //Mostrar consultorios disponibles
                 pc.mostrar();
                 break;
                 
-            case 10: {
+            case 10: //Liberar consultorio
+			{
                 cout << "Numero de consultorio a liberar: ";
                 cin >> id;
                 pc.liberar(id);
                 break;
             }
                 
-            case 11:
+            case 11: //Guardar y salir
                 gm.guardar();
                 cout << "Datos guardados. Saliendo..." << endl;
                 break;
